@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>배추</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <h1><a href="{% url 'index' %}">배달추천</a></h1>
+    {{ keyword.keyword }} 음식 추천
+    <table class="food_content">
+        {% for food in list %}
+        <tr>
+            <td>{{food.name}}</td>
+            <tr>
+                <td><img src={{food.path}}></td>
+            </tr>
+            <tr>
+                <td>
+                    <form action="{% url 'good' %}" method="POST">
+                        {% csrf_token %}
+                        <input type="hidden" name="fno" value={{food.fno}}>
+                        <button type = "submit" class = "button" name="sense" value={{keyword.keyword}}>좋아요</button>
+                    </form>
+                    <form action="{% url 'bad' %}" method="POST">
+                        {% csrf_token %}
+                        <input type="hidden" name="fno" value={{food.fno}}>
+                        <button type = "submit" class = "button" name="sense" value={{keyword.keyword}}>싫어요</button>
+                    </form>
+                </td>
+            </tr>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

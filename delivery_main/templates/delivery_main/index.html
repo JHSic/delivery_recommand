@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>배추</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <h1><a href="{% url 'index' %}">배달추천</a></h1>
+    <form action="{% url 'recommand' %}" method="get">
+        <input id="adj" type="text" name="keyword" value="{{ current_name }}">
+        <label for="adj"> 음식 추천 해줘 </label>
+        <input type="submit" value="제출">
+    </form>
+</body>
+</html>
